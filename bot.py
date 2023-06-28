@@ -1,6 +1,10 @@
 import discord
+from discord.ext import commands #module in Discord.py library
 import requests
 import json
+from intents import intents
+
+bot = commands.Bot(command_prefix='!', intents=intents)  # Pass the intents argument
 
 # json 파일에서 config.json 정보 가줘오기
 def load_config():
@@ -9,15 +13,9 @@ def load_config():
     
 config = load_config()
 BOT_TOKEN = config['BOT_TOKEN']
-    
-# discord 라이브러리 세팅 chatgpt 에서 가줘왔음 
-intents = discord.Intents.default()  # Create an instance of Intents
-intents.typing = False  # Disable typing event (optional)
-intents.presences = False  # Disable presence event (optional)
-client = discord.Client(intents=intents)  # Pass the intents argument
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f'Logged in as {client.user.name} ({client.user.id})')
+    print(f'Logged in as {bot.user.name} ({bot.user.id})')
 
-client.run(BOT_TOKEN)
+bot.run(BOT_TOKEN)
