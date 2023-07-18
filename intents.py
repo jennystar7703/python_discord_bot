@@ -7,3 +7,6 @@ intents.presences = False  # Disable presence event (optional)
 intents.members = True
 intents.guilds = True
 client = discord.Client(intents=intents)  # Pass the intents argument
+
+def get_intents():
+    return intents
