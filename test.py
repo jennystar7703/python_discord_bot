@@ -2,11 +2,7 @@ import discord
 from discord.ext import commands
 import json
 
-intents = discord.Intents.default()  # Create an instance of Intents
-intents.typing = False  # Disable typing event (optional)
-intents.presences = False  # Disable presence event (optional)
-
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
 
 def load_config():
     with open('config.json') as file:
@@ -20,10 +16,22 @@ BOT_TOKEN = config['BOT_TOKEN']
 # Command definition
 @bot.command()
 async def hello(ctx):
+    print("Hello command received") 
     await ctx.send('Hello, I am your friendly Discord bot!')
+
+@bot.command()
+async def test(ctx, arg):
+    await ctx.send(arg)
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
+
+@bot.event
+async def on_command_error(ctx, error):
+    print(f'An error occurred: {error}')
+
+
+
 
 bot.run(BOT_TOKEN)

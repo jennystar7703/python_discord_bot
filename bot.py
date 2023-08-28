@@ -4,7 +4,8 @@ import requests
 import json
 from intents import get_intents
 
-bot = commands.Bot(command_prefix='!', intents=get_intents())  # Pass the intents argument
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='.', intents=get_intents())  # Pass the intents argument
 
 # json 파일에서 config.json 정보 가줘오기
 def load_config():
@@ -32,6 +33,19 @@ async def join(ctx):
 
 @bot.command 
 async def leave(ctx):
-    if ctx.voice_client is None:
+    if ctx.voice_client is not None:
+        await ctx.voice_client.disconnect()
+    else:
+        await ctx.send("I'm not in a voice channel!")
 
+# Command definition
+@bot.command()
+async def hello(ctx):
+    print("Hello command received")  # Debugging line
+    await ctx.send('Hello, I am your friendly Discord bot!')
+
+@bot.command()
+async def play(ctx, url):
+    ctx.voice_client.stop()
+    
 bot.run(BOT_TOKEN)
