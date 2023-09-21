@@ -2,10 +2,9 @@ import discord
 from discord.ext import commands #module in Discord.py library
 import requests
 import json
-from intents import get_intents
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix='.', intents=get_intents())  # Pass the intents argument
+bot = commands.Bot(command_prefix='.', intents=discord.Intents.all())  # Pass the intents argument
 
 # json 파일에서 config.json 정보 가줘오기
 def load_config():

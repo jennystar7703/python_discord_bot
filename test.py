@@ -32,6 +32,4 @@ async def on_command_error(ctx, error):
     print(f'An error occurred: {error}')
 
 
-
-
 bot.run(BOT_TOKEN)
