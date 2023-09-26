@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 import youtube_dl
-import discord
 import json
+from bot.commands import voice
 
 # Load the configuration file as you've done in your example
 def load_config():
@@ -13,7 +13,7 @@ config = load_config()
 BOT_TOKEN = config['BOT_TOKEN']
 
 # Define the bot and the command prefix
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
 
 # Command to play the provided YouTube video
 @bot.command()
