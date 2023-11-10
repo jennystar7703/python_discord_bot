@@ -2,3 +2,4 @@ discord.py
 openai
 gtts
 transformers
+PyNaCl 
