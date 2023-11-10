@@ -30,7 +30,7 @@ async def join(ctx):
     else:
         await ctx.voice_client.move_to(voice_channel)
 
-@bot.command 
+@bot.command()
 async def leave(ctx):
     if ctx.voice_client is not None:
         await ctx.voice_client.disconnect()
